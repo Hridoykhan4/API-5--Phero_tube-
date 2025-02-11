@@ -12,7 +12,8 @@ const showCategories = (categories) => {
   categories.forEach((category) => {
     const button = document.createElement("button");
     button.innerText = category.category;
-    button.className = `btn btn-error text-white`;
+    button.className = `btn category-btn`;
+    button.setAttribute('id', `btn-${category.category_id}`)
     categoriesContainer.appendChild(button);
     button.onclick = () => {
       displayEachByCategory(`${category.category_id}`);
@@ -80,11 +81,13 @@ const showVideos = (videos) => {
         ? '<img class="inline w-5" src="./assets/tick.png"/>'
         : ""
     }
-    <p></p>
     </div>
 
     
-  </div>
+    </div>
+      <div class="card-actions justify-end">
+      <button class="btn btn-primary" onclick="showDetails('${video.video_id}')">Details</button>
+    </div>
     `;
     videoContainer.appendChild(card);
   });
