@@ -1,3 +1,4 @@
+// Category section start
 const loadCategories = async () => {
   const res = await fetch(
     "https://openapi.programming-hero.com/api/phero-tube/categories"
@@ -13,9 +14,16 @@ const showCategories = (categories) => {
     button.innerText = category.category;
     button.className = `btn btn-error text-white`;
     categoriesContainer.appendChild(button);
+    button.onclick = () => {
+      displayEachByCategory(`${category.category_id}`);
+    };
   });
-  loadSpinner(false)
+  loadSpinner(false);
 };
+
+// Category section End
+
+
 
 // Load Videos Section Start
 
@@ -29,8 +37,8 @@ const loadVideos = async () => {
 
 const showVideos = (videos) => {
   const videoContainer = document.getElementById("videos");
+  videoContainer.innerHTML = ''
   videos.forEach((video) => {
-    console.log(video);
     const card = document.createElement("div");
     card.classList = `card card-compact bg-base-100`;
     card.innerHTML = `
@@ -42,7 +50,9 @@ const showVideos = (videos) => {
       alt="Shoes" />
       ${
         video?.others?.posted_date &&
-        `<span class="p-2 rounded-lg bg-black text-white  absolute bottom-2 right-2">${getTime(video?.others?.posted_date)}</span>`
+        `<span class="p-2 rounded-lg bg-black text-white text-xs absolute bottom-2 right-2">${getTime(
+          video?.others?.posted_date
+        )}</span>`
       }
       </figure>
       <div class="py-3 flex gap-2 mt-1">
@@ -69,12 +79,10 @@ const showVideos = (videos) => {
     `;
     videoContainer.appendChild(card);
   });
-  loadSpinner(false)
+  loadSpinner(false);
 };
 
 loadVideos();
 // Load Videos Section End
 
 loadCategories();
-
-
