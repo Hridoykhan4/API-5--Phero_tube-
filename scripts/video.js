@@ -42,7 +42,7 @@ const showVideos = (videos) => {
       alt="Shoes" />
       ${
         video?.others?.posted_date &&
-        `<span class="p-2 rounded-lg bg-black text-white  absolute bottom-2 right-2">${video?.others?.posted_date}</span>`
+        `<span class="p-2 rounded-lg bg-black text-white  absolute bottom-2 right-2">${getTime(video?.others?.posted_date)}</span>`
       }
       </figure>
       <div class="py-3 flex gap-2 mt-1">
