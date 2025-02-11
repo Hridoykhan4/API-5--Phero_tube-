@@ -26,9 +26,9 @@ const showCategories = (categories) => {
 
 // Load Videos Section Start
 
-const loadVideos = async () => {
+const loadVideos = async (videoTitle = '') => {
   const res = await fetch(
-    "https://openapi.programming-hero.com/api/phero-tube/videos"
+    `https://openapi.programming-hero.com/api/phero-tube/videos?title=${videoTitle}`
   );
   const data = await res.json();
   showVideos(data.videos);
@@ -98,3 +98,10 @@ loadVideos();
 // Load Videos Section End
 
 loadCategories();
+
+
+// Search Function
+document.getElementById('search-input').addEventListener('keyup', (e) => {
+  const target = e.target.value;
+  loadVideos(target)
+})
