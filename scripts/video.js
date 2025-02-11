@@ -23,8 +23,6 @@ const showCategories = (categories) => {
 
 // Category section End
 
-
-
 // Load Videos Section Start
 
 const loadVideos = async () => {
@@ -37,7 +35,18 @@ const loadVideos = async () => {
 
 const showVideos = (videos) => {
   const videoContainer = document.getElementById("videos");
-  videoContainer.innerHTML = ''
+  videoContainer.innerHTML = "";
+
+  if (!videos.length) {
+    videoContainer.className = `flex justify-center flex-col items-center h-[18rem]`;
+    videoContainer.innerHTML = `
+   <img src="./assets/Icon.png" />
+   <p class="mt-4 text-center font-bold text-2xl">Oops!! Sorry, There is no <br> content here</p>
+   `;
+  } else {
+    videoContainer.className = `w-11/12 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 py-10`;
+  }
+
   videos.forEach((video) => {
     const card = document.createElement("div");
     card.classList = `card card-compact bg-base-100`;
