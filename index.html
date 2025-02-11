@@ -53,7 +53,7 @@
         <div class="logo w-28">
           <img src="./assets/Logo.png" alt="" />
         </div>
-        <div class="search">
+        <div>
           <label class="input input-bordered flex items-center gap-2">
             <input
               id="search-input"
@@ -76,16 +76,16 @@
           </label>
         </div>
         <div class="sort">
-          <button class="btn">Sort</button>
+          <button class="btn btn-error px-6 text-white">Sort</button>
         </div>
       </nav>
     </header>
 
-    <nav id="categories" class="py-3 flex gap-5 justify-center"></nav>
+    <div id="categories" class="py-3 flex gap-5 justify-center"></div>
 
     <main>
 
-      <div class="text-center my-20" id="loadingSpinner">
+      <div class="text-center my-20 hidden" id="loadingSpinner">
         <span class="loading loading-bars loading-lg"></span>
       </div>
 
