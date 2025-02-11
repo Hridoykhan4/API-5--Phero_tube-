@@ -14,7 +14,7 @@ const showCategories = (categories) => {
     button.className = `btn btn-error text-white`;
     categoriesContainer.appendChild(button);
   });
-  loadSpinner(false);
+  loadSpinner(false)
 };
 
 // Load Videos Section Start
@@ -27,40 +27,26 @@ const loadVideos = async () => {
   showVideos(data.videos);
 };
 
-/* {
-    "category_id": "1003",
-    "video_id": "aaai",
-    "thumbnail": "https://i.ibb.co/kc8CCFs/30-rock.png",
-    "title": "30 Rock",
-    "authors": [
-        {
-            "profile_picture": "https://i.ibb.co/YZN9rQZ/tina.jpg",
-            "profile_name": "Tina Fey",
-            "verified": false
-        }
-    ],
-    "others": {
-        "views": "4.5K",
-        "posted_date": "14800"
-    },
-    "description": "'30 Rock,' led by Tina Fey, is a comedy series that has garnered 4.5K views. The show is a witty and humorous take on the behind-the-scenes antics of a fictional live comedy show. With its sharp writing and unforgettable characters, '30 Rock' is perfect for fans of smart, satirical humor and engaging storylines."
-} */
-
 const showVideos = (videos) => {
   const videoContainer = document.getElementById("videos");
   videos.forEach((video) => {
+    console.log(video);
     const card = document.createElement("div");
     card.classList = `card card-compact bg-base-100`;
     card.innerHTML = `
-      <figure class="overflow-hidden h-[208px]">
+      <figure class="overflow-hidden h-[208px] relative">
     <img
       src="${
         video.thumbnail
       }" class="w-full h-full object-cover hover:scale-110 transition-all duration-300 ease-linear"
       alt="Shoes" />
-  </figure>
-  <div class="py-3 flex gap-2 mt-1">
-    <div>
+      ${
+        video?.others?.posted_date &&
+        `<span class="p-2 rounded-lg bg-black text-white  absolute bottom-2 right-2">${video?.others?.posted_date}</span>`
+      }
+      </figure>
+      <div class="py-3 flex gap-2 mt-1">
+      <div>
         <img src="${
           video.authors[0].profile_picture
         }" class="w-12 h-12 object-cover rounded-full flex-shrink-0" />
@@ -83,20 +69,12 @@ const showVideos = (videos) => {
     `;
     videoContainer.appendChild(card);
   });
-  loadSpinner(false);
+  loadSpinner(false)
 };
 
 loadVideos();
-
 // Load Videos Section End
 
-const loadSpinner = (isLoading) => {
-  if (isLoading) {
-    document.getElementById("loadingSpinner").classList.remove("hidden");
-  } else {
-    document.getElementById("loadingSpinner").classList.add("hidden");
-  }
-};
-loadSpinner(true);
-
 loadCategories();
+
+
