@@ -24,7 +24,7 @@ const loadVideos = async () => {
     "https://openapi.programming-hero.com/api/phero-tube/videos"
   );
   const data = await res.json();
-  showVideos(data.videos)
+  showVideos(data.videos);
 };
 
 /* {
@@ -46,33 +46,47 @@ const loadVideos = async () => {
     "description": "'30 Rock,' led by Tina Fey, is a comedy series that has garnered 4.5K views. The show is a witty and humorous take on the behind-the-scenes antics of a fictional live comedy show. With its sharp writing and unforgettable characters, '30 Rock' is perfect for fans of smart, satirical humor and engaging storylines."
 } */
 
-
 const showVideos = (videos) => {
-  const videoContainer = document.getElementById('videos')
+  const videoContainer = document.getElementById("videos");
   videos.forEach((video) => {
-    const card = document.createElement('div');
-    card.classList = `card card-compact bg-base-100`
+    const card = document.createElement("div");
+    card.classList = `card card-compact bg-base-100`;
     card.innerHTML = `
       <figure class="overflow-hidden h-[208px]">
     <img
-      src="${video.thumbnail}" class="w-full h-full object-cover hover:scale-110 transition-all duration-300 ease-linear"
+      src="${
+        video.thumbnail
+      }" class="w-full h-full object-cover hover:scale-110 transition-all duration-300 ease-linear"
       alt="Shoes" />
   </figure>
-  <div class="py-3">
-    <h2 class="card-title">Shoes!</h2>
-    <p>If a dog chews shoes whose shoes does he choose?</p>
-    <div class="card-actions justify-end">
-      <button class="btn btn-primary">Buy Now</button>
+  <div class="py-3 flex gap-2 mt-1">
+    <div>
+        <img src="${
+          video.authors[0].profile_picture
+        }" class="w-12 h-12 object-cover rounded-full flex-shrink-0" />
     </div>
+
+    <div>
+    <h2 class="font-semibold text-lg">${video.title}</h2>
+    <p class="text-gray-500 font-medium inline">${
+      video.authors[0].profile_name
+    }</p> ${
+      video.authors[0].verified
+        ? '<img class="inline w-5" src="./assets/tick.png"/>'
+        : ""
+    }
+    <p></p>
+    </div>
+
+    
   </div>
-    `
-    videoContainer.appendChild(card)
+    `;
+    videoContainer.appendChild(card);
   });
-  loadSpinner(false)
-}
+  loadSpinner(false);
+};
 
-
-loadVideos()
+loadVideos();
 
 // Load Videos Section End
 
